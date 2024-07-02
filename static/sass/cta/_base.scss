@@ -1,0 +1,105 @@
+@use '../core' as *;
+@use 'sass:math';
+
+.#{$prefix}-cta {
+  text-decoration: none;
+  display: inline-block;
+  font-weight: $font-weight-medium;
+
+  &::after {
+    content: '';
+    color: $color-blue-500;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23006298" viewBox="0 0 16 16"><path d="M1 7h10.844L7.737 2.146 9.263.854 15.31 8l-6.047 7.146-1.526-1.292L11.844 9H1V7Z"></path></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: $spacing-xs;
+    display: inline-block;
+    width: $spacing-sm;
+    height: $spacing-sm;
+    position: relative;
+    top: $spacing-xxs * .8;
+    transition: all .2s ease;
+  }
+
+  &:hover {
+    &::after {
+      transform: translate($spacing-xs, 0);
+    }
+  }
+
+  &--button {
+    background-color: $color-crimson-500;
+    border: math.div($spacing-xxs, 2) solid $color-crimson-500;
+    border-color: $color-crimson-500;
+    border-radius: $spacing-xxs;
+    box-shadow: $shadow-standard;
+    color: $color-white-base;
+    height: $spacing-xl;
+    padding: 0 $spacing-sm * .75;
+    display: inline-flex;
+    align-items: center;
+
+    &::after {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23ffffff" viewBox="0 0 16 16"><path d="M1 7h10.844L7.737 2.146 9.263.854 15.31 8l-6.047 7.146-1.526-1.292L11.844 9H1V7Z"></path></svg>');
+      top: 0;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 math.div($spacing-xxs, 2) $color-white-base, 0 0 0 $spacing-xxs $color-crimson-400;
+      outline: none;
+    }
+
+    &:hover {
+      background-color: $color-crimson-600;
+      border-color: $color-crimson-600;
+      color: $color-white-base;
+
+      &::after {
+        transform: translate($spacing-xxs, 0);
+      }
+    }
+
+    &:active {
+      background-color: $color-crimson-700;
+      border-color: $color-crimson-700;
+    }
+  }
+}
+
+// Contextual styles for the CTA button When used with any "--bg-dark" component variants.
+[class*='--bg-dark'] .#{$prefix}-cta {
+  color: $color-white-base;
+
+  &:hover {
+    color: $color-blue-100;
+  }
+
+  &::after {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23ffffff" viewBox="0 0 16 16"><path d="M1 7h10.844L7.737 2.146 9.263.854 15.31 8l-6.047 7.146-1.526-1.292L11.844 9H1V7Z"></path></svg>');
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 math.div($spacing-xxs, 2) $color-white-base, 0 0 0 $spacing-xxs $color-crimson-500;
+    outline: none;
+  }
+}
+
+[class*='--bg-dark'] .#{$prefix}-cta--button {
+  background-color: $color-white-base;
+  color: $color-blue-500;
+  border-color: $color-white-base;
+
+  &::after {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23006298" viewBox="0 0 16 16"><path d="M1 7h10.844L7.737 2.146 9.263.854 15.31 8l-6.047 7.146-1.526-1.292L11.844 9H1V7Z"></path></svg>');
+  }
+
+  &:hover {
+    background-color: $color-blue-100;
+    border-color: $color-blue-100;
+    color: $color-blue-700;
+  }
+}

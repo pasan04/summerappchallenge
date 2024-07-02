@@ -1,0 +1,148 @@
+/**
+ * Do not edit directly
+ * Generated on Tue, 07 May 2024 17:31:45 GMT
+ */
+
+:root {
+  --rvt-border-radius-sm: .125rem;
+  --rvt-border-radius-md: .25rem;
+  --rvt-border-radius-lg: .5rem;
+  --rvt-border-radius-circle: 999rem;
+  --rvt-breakpoint-sm: 30em;
+  --rvt-breakpoint-md: 46.25em;
+  --rvt-breakpoint-lg: 67.5em;
+  --rvt-breakpoint-xl: 78.75em;
+  --rvt-breakpoint-xxl: 87.5em;
+  --rvt-color-black-100: #e2e7e9;
+  --rvt-color-black-200: #a0abb4;
+  --rvt-color-black-300: #75838f;
+  --rvt-color-black-400: #4c5a69;
+  --rvt-color-black-500: #243142; /* Base black */
+  --rvt-color-black-600: #182534;
+  --rvt-color-black-700: #0e1825;
+  --rvt-color-black-base: #243142;
+  --rvt-color-black-000: #f8f9fa;
+  --rvt-color-blue-100: #c6ecf6;
+  --rvt-color-blue-200: #94d2e7;
+  --rvt-color-blue-300: #63b1d3;
+  --rvt-color-blue-400: #328bb8;
+  --rvt-color-blue-500: #006298; /* Base blue */
+  --rvt-color-blue-600: #004f80;
+  --rvt-color-blue-700: #00385f;
+  --rvt-color-blue-base: #006298;
+  --rvt-color-blue-000: #edfafd;
+  --rvt-color-crimson-100: #ffd6db;
+  --rvt-color-crimson-200: #ff636a;
+  --rvt-color-crimson-300: #f23a3f;
+  --rvt-color-crimson-400: #dc231e;
+  --rvt-color-crimson-500: #990000; /* Base crimson */
+  --rvt-color-crimson-600: #800000;
+  --rvt-color-crimson-700: #5a0c0c;
+  --rvt-color-crimson-base: #990000;
+  --rvt-color-crimson-000: #fff7f8;
+  --rvt-color-gold-100: #fff4c6;
+  --rvt-color-gold-200: #ffe694;
+  --rvt-color-gold-300: #ffd563;
+  --rvt-color-gold-400: #ffc132;
+  --rvt-color-gold-500: #ffaa00; /* Base gold */
+  --rvt-color-gold-600: #a36b00;
+  --rvt-color-gold-700: #613d00;
+  --rvt-color-gold-base: #ffaa00;
+  --rvt-color-gold-000: #fffceb;
+  --rvt-color-green-100: #dee8c6;
+  --rvt-color-green-200: #a7d094;
+  --rvt-color-green-300: #63b363;
+  --rvt-color-green-400: #329345;
+  --rvt-color-green-500: #056e41; /* Base green */
+  --rvt-color-green-600: #005c31;
+  --rvt-color-green-700: #004421;
+  --rvt-color-green-base: #056e41;
+  --rvt-color-green-000: #f9f9f0;
+  --rvt-color-orange-100: #ffcdc0;
+  --rvt-color-orange-200: #ffa690;
+  --rvt-color-orange-300: #ff7e60;
+  --rvt-color-orange-400: #f75930;
+  --rvt-color-orange-500: #df3603; /* Base orange */
+  --rvt-color-orange-600: #b11c00;
+  --rvt-color-orange-700: #690a00;
+  --rvt-color-orange-base: #df3603;
+  --rvt-color-orange-000: #fff3f0;
+  --rvt-color-purple-100: #decadc;
+  --rvt-color-purple-200: #c09ebb;
+  --rvt-color-purple-300: #a07498;
+  --rvt-color-purple-400: #7d4c73;
+  --rvt-color-purple-500: #59264d; /* Base purple */
+  --rvt-color-purple-600: #48183d;
+  --rvt-color-purple-700: #330d2b;
+  --rvt-color-purple-base: #59264d;
+  --rvt-color-purple-000: #fbf8fb;
+  --rvt-color-white-base: #ffffff;
+  --rvt-font-base: 'BentonSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --rvt-font-sans: 'BentonSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --rvt-font-serif: 'GeorgiaPro', Georgia, 'Times New Roman', Times, serif;
+  --rvt-font-mono: monospace;
+  --rvt-font-weight-bold: 700;
+  --rvt-font-weight-medium: 500;
+  --rvt-font-weight-regular: 400;
+  --rvt-line-height-base: 1.5;
+  --rvt-line-height-title: 1.2;
+  --rvt-line-height-tight: 1.2;
+  --rvt-line-height-loose: 1.65;
+  --rvt-prefix: rvt; /* Global class name prefix */
+  --rvt-shadow-base: 0 .25rem .5rem rgb(36, 49, 66, .16);
+  --rvt-shadow-subtle: 0 .1875rem .375rem rgb(36, 49, 66, .07);
+  --rvt-shadow-standard: 0 .25rem .5rem rgb(36, 49, 66, .16);
+  --rvt-shadow-heavy: 0 .25rem 1rem rgb(36, 49, 66, .2);
+  --rvt-spacing-base: .5rem; /* 8px */
+  --rvt-spacing-xxs: .25rem; /* 4px */
+  --rvt-spacing-xs: .5rem; /* 8px */
+  --rvt-spacing-sm: 1rem; /* 16px */
+  --rvt-spacing-md: 1.5rem; /* 24px */
+  --rvt-spacing-lg: 2rem; /* 32px */
+  --rvt-spacing-xl: 2.5rem; /* 40px */
+  --rvt-spacing-xxl: 4rem; /* 64px */
+  --rvt-spacing-3-xl: 8rem; /* 128px */
+  --rvt-spacing-4-xl: 12rem; /* 192px */
+  --rvt-ts-12: .75rem;
+  --rvt-ts-14: .875rem;
+  --rvt-ts-16: 1rem;
+  --rvt-ts-18: 1.125rem;
+  --rvt-ts-20: 1.25rem;
+  --rvt-ts-23: 1.4375rem;
+  --rvt-ts-26: 1.625rem;
+  --rvt-ts-29: 1.8125rem;
+  --rvt-ts-32: 2rem;
+  --rvt-ts-36: 2.25rem;
+  --rvt-ts-41: 2.5625rem;
+  --rvt-ts-46: 2.875rem;
+  --rvt-ts-52: 3.25rem;
+  --rvt-ts-xxs: .75rem;
+  --rvt-ts-xs: .875rem;
+  --rvt-ts-base: 1rem;
+  --rvt-ts-sm: 1.25rem;
+  --rvt-ts-md: 1.625rem;
+  --rvt-ts-lg: 2rem;
+  --rvt-ts-xl: 2.5625rem;
+  --rvt-ts-xxl: 3.25rem;
+  --rvt-width-base: 4rem; /* 64px */
+  --rvt-width-xxs: 4rem; /* 64px */
+  --rvt-width-xs: 8rem; /* 128px */
+  --rvt-width-sm: 12rem; /* 192px */
+  --rvt-width-md: 16rem; /* 256px */
+  --rvt-width-lg: 20rem; /* 320px */
+  --rvt-width-xl: 24rem; /* 384px */
+  --rvt-width-xxl: 32rem; /* 512px */
+  --rvt-width-3-xl: 40rem; /* 640px */
+  --rvt-width-4-xl: 48rem; /* 768px */
+  --rvt-z-index-0: 0;
+  --rvt-z-index-100: 100;
+  --rvt-z-index-200: 200;
+  --rvt-z-index-300: 300;
+  --rvt-z-index-400: 400;
+  --rvt-z-index-500: 500;
+  --rvt-z-index-600: 600;
+  --rvt-z-index-700: 700;
+  --rvt-z-index-800: 800;
+  --rvt-z-index-900: 900;
+  --rvt-z-index-1000: 1000;
+}
