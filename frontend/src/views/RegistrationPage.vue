@@ -21,18 +21,22 @@
                         </div>
                         <form @submit.prevent="login()">
                             <div class="rvt-card__content [ rvt-p-top-none rvt-m-top-none rvt-border-top-none ]">
-                                <h2 class="rvt-p-tb-md rvt-text-medium">LOGIN</h2>
+                                <h2 class="rvt-p-tb-md rvt-text-medium">REGISTRATION</h2>
                                 <ul class="rvt-list-plain">
-                                    <label for="text-input-username" class="rvt-label">Email</label>
-                                    <input type="text" id="text-input-username" class="rvt-text-input" v-model="email" placeholder="username" required>
+                                    <label for="text-input-username" class="rvt-label">Name</label>
+                                    <input type="text" id="text-input-username" class="rvt-text-input" v-model="name" placeholder="Name" required>
+                                    <label for="text-input-email" class="rvt-label">Email</label>
+                                    <input type="text" id="text-input-email" class="rvt-text-input" v-model="email" placeholder="Email" required>
                                     <label for="text-input-password" class="rvt-label">Password</label>
-                                    <input type="text" id="text-input-password" class="rvt-text-input" placeholder="password" v-model="password" required>
+                                    <input type="text" id="text-input-password" class="rvt-text-input" placeholder="Password" v-model="password" required>
+                                    <label for="text-input-re_password" class="rvt-label">Re-password</label>
+                                    <input type="text" id="text-input-re_password" class="rvt-text-input" placeholder="Re-password" v-model="repassword" required>
                                 </ul>
                             </div>
                             <div class="rvt-m-top-md rvt-flex">
-                                <button class="rvt-button">Login In</button>
+                                <button class="rvt-button">Sign Up</button>
                             </div>
-                            <p>New member? <router-link to="/register" class="login-class" style="text-decoration: underline;">sign-up</router-link></p>
+                            <p>Already signed up? <router-link to="/login" class="login-class" style="text-decoration: underline;">sign-in</router-link></p>
                         </form>
                     </div>
                 </div>
@@ -40,34 +44,38 @@
         </div>
     </main>
 </template>
-
-
 <script setup lang="ts">
 import { ref } from 'vue';
 import axios from 'axios';
 import { API_CALL } from '../shared/content';
-import { useRouter } from 'vue-router';
 
-const router = useRouter();
-
-const email = ref<string>('');
+const name = ref<string>('');
 const password = ref<string>('');
+const email = ref<string>('');
+const repassword = ref<string>('');
 
 const login = async () => {
-    try {
-        const loginData = {
-            email: email.value,
-            password: password.value,
-        };
-        const res = await axios.post(`${API_CALL}/api/login/`, loginData);
-        console.log(res);
-        router.push('/');
-    } catch (error) {
-        console.error('Error:', error);
-    }
+    if(password == repassword){
+        try {
+            const response = await axios.get(API_CALL + '/api/register/', {
+                params: {
+                    name: email.value,
+                    email: email.value,
+                    password: password.value,
+                },
+            });
+            console.log('Response:', response.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
 
-    // Clear the form inputs after submission (optional)
-    email.value = '';
-    password.value = '';
+        // Clear the form inputs after submission (optional)
+        name.value = '';
+        email.value = '';
+        password.value = '';
+        repassword.value = '';
+    }else{
+
+    }
 };
 </script>
