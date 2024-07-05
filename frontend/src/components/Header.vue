@@ -86,7 +86,7 @@
                                         <span class="rvt-avatar__text">UN</span>
                                     </div>
                                     <div class="rvt-ts-14 rvt-m-left-xs rvt-p-right-xs rvt-m-right-xs rvt-border-right">username</div>
-                                    <a href="#0" class="rvt-ts-14">Log out</a>
+                                    <a class="rvt-ts-14" @click="logoutFunc" style="text-decoration: underline">Log out</a>
                                 </div>
                             </nav>
                         </div>
@@ -97,5 +97,22 @@
     </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import {useRouter} from "vue-router";
+import axios from "axios";
+import {API_CALL} from "@/shared/content";
+
+const router = useRouter();
+async function logoutFunc() {
+    try {
+        const logout = {
+            email: "pkamburu2@gmail.com",
+            password: "pasan123@"
+        };
+        const res = await axios.post(`${API_CALL}/api/logout/`, logout);
+        router.push('/login');
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 </script>

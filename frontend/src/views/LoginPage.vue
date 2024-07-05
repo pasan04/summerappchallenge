@@ -60,7 +60,6 @@ const login = async () => {
             password: password.value,
         };
         const res = await axios.post(`${API_CALL}/api/login/`, loginData);
-        console.log(res);
         router.push('/');
     } catch (error) {
         console.error('Error:', error);
