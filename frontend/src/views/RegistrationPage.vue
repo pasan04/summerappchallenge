@@ -33,6 +33,7 @@
                                     <input type="password" id="text-input-re_password" class="rvt-text-input" placeholder="Re-password" v-model="repassword" required>
                                 </ul>
                             </div>
+                            <p v-if="errorMessage" style="color: red">{{ errorMessage }}</p>
                             <div class="rvt-m-top-md rvt-flex">
                                 <button class="rvt-button">Sign Up</button>
                             </div>
@@ -55,6 +56,7 @@ const name = ref<string>('');
 const password = ref<string>('');
 const email = ref<string>('');
 const repassword = ref<string>('');
+const errorMessage = ref<string>('');
 
 const register = async () => {
     if(password.value == repassword.value){
@@ -68,15 +70,15 @@ const register = async () => {
             router.push('/');
         } catch (error) {
             console.error('Error:', error);
+            errorMessage.value = 'Error in sign up. !'
         }
-
-        // Clear the form inputs after submission (optional)
-        name.value = '';
-        email.value = '';
-        password.value = '';
-        repassword.value = '';
     }else{
-
+        errorMessage.value = 'Passwords do not match. Please enter valid password!'
     }
+    // Clear the form inputs after submission (optional)
+    name.value = '';
+    email.value = '';
+    password.value = '';
+    repassword.value = '';
 };
 </script>
