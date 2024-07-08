@@ -6,4 +6,5 @@ urlpatterns = [
     path('login/', loginUser.as_view()),
     path('user/', getUser.as_view()),
     path('logout/', logout.as_view()),
+    path('getuserbyemail/', getUserByEmail.as_view())
 ]

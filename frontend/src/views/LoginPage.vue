@@ -19,16 +19,17 @@
                                 </a>
                             </div>
                         </div>
-                        <form @submit.prevent="login()">
+                        <form @submit.prevent="handlelogin()">
                             <div class="rvt-card__content [ rvt-p-top-none rvt-m-top-none rvt-border-top-none ]">
                                 <h2 class="rvt-p-tb-md rvt-text-medium">LOGIN</h2>
                                 <ul class="rvt-list-plain">
                                     <label for="text-input-username" class="rvt-label">Email</label>
                                     <input type="text" id="text-input-username" class="rvt-text-input" v-model="email" placeholder="username" required>
                                     <label for="text-input-password" class="rvt-label">Password</label>
-                                    <input type="text" id="text-input-password" class="rvt-text-input" placeholder="password" v-model="password" required>
+                                    <input type="password" id="text-input-password" class="rvt-text-input" placeholder="password" v-model="password" required>
                                 </ul>
                             </div>
+                            <p v-if="errorMessage" style="color: red">{{ errorMessage }}</p>
                             <div class="rvt-m-top-md rvt-flex">
                                 <button class="rvt-button">Login In</button>
                             </div>
@@ -44,28 +45,23 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import axios from 'axios';
-import { API_CALL } from '../shared/content';
 import { useRouter } from 'vue-router';
+import { login } from '../auth';
 
 const router = useRouter();
 
 const email = ref<string>('');
 const password = ref<string>('');
+const errorMessage = ref<string>('');
 
-const login = async () => {
+const handlelogin = async () => {
     try {
-        const loginData = {
-            email: email.value,
-            password: password.value,
-        };
-        const res = await axios.post(`${API_CALL}/api/login/`, loginData);
+        await login(email.value, password.value);
         router.push('/');
     } catch (error) {
+        errorMessage.value = 'Username or password is incorrect!'
         console.error('Error:', error);
     }
-
-    // Clear the form inputs after submission (optional)
     email.value = '';
     password.value = '';
 };

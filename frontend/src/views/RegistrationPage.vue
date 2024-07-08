@@ -19,7 +19,7 @@
                                 </a>
                             </div>
                         </div>
-                        <form @submit.prevent="login()">
+                        <form @submit.prevent="register()">
                             <div class="rvt-card__content [ rvt-p-top-none rvt-m-top-none rvt-border-top-none ]">
                                 <h2 class="rvt-p-tb-md rvt-text-medium">REGISTRATION</h2>
                                 <ul class="rvt-list-plain">
@@ -28,9 +28,9 @@
                                     <label for="text-input-email" class="rvt-label">Email</label>
                                     <input type="text" id="text-input-email" class="rvt-text-input" v-model="email" placeholder="Email" required>
                                     <label for="text-input-password" class="rvt-label">Password</label>
-                                    <input type="text" id="text-input-password" class="rvt-text-input" placeholder="Password" v-model="password" required>
+                                    <input type="password" id="text-input-password" class="rvt-text-input" placeholder="Password" v-model="password" required>
                                     <label for="text-input-re_password" class="rvt-label">Re-password</label>
-                                    <input type="text" id="text-input-re_password" class="rvt-text-input" placeholder="Re-password" v-model="repassword" required>
+                                    <input type="password" id="text-input-re_password" class="rvt-text-input" placeholder="Re-password" v-model="repassword" required>
                                 </ul>
                             </div>
                             <div class="rvt-m-top-md rvt-flex">
@@ -48,23 +48,24 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import { API_CALL } from '../shared/content';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const name = ref<string>('');
 const password = ref<string>('');
 const email = ref<string>('');
 const repassword = ref<string>('');
 
-const login = async () => {
-    if(password == repassword){
+const register = async () => {
+    if(password.value == repassword.value){
         try {
-            const response = await axios.get(API_CALL + '/api/register/', {
-                params: {
-                    name: email.value,
-                    email: email.value,
-                    password: password.value,
-                },
-            });
-            console.log('Response:', response.data);
+            const regData = {
+                name: name.value,
+                email: email.value,
+                password: password.value,
+            };
+            const response = await axios.post(API_CALL + '/api/register/', regData)
+            router.push('/');
         } catch (error) {
             console.error('Error:', error);
         }

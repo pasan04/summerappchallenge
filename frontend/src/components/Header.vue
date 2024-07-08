@@ -51,29 +51,8 @@
 
                             <nav aria-label="Main" class="rvt-header-menu" data-rvt-disclosure-target="menu" hidden>
                                 <ul class="rvt-header-menu__list">
-                                    <li class="rvt-header-menu__item rvt-header-menu__item--current">
-                                        <div class="rvt-header-menu__dropdown rvt-dropdown" data-rvt-dropdown="primary-nav-3">
-                                            <div class="rvt-header-menu__group">
-                                                <a class="rvt-header-menu__link" href="#0" aria-current="page">OSoMe Stat Page</a>
-                                                <button aria-expanded="false" class="rvt-dropdown__toggle rvt-header-menu__toggle" data-rvt-dropdown-toggle="primary-nav-3">
-                                                    <span class="rvt-sr-only">Toggle Sub-navigation</span>
-                                                    <svg class="rvt-global-toggle__open" fill="currentColor" width="16" height="16" viewBox="0 0 16 16"><path d="m15.146 6.263-1.292-1.526L8 9.69 2.146 4.737.854 6.263 8 12.31l7.146-6.047Z"></path></svg>
-                                                </button>
-                                            </div>
-                                            <div class="rvt-header-menu__submenu rvt-dropdown__menu rvt-dropdown__menu--right" data-rvt-dropdown-menu="primary-nav-3" hidden>
-                                                <ul class="rvt-header-menu__submenu-list">
-                                                    <li class="rvt-header-menu__submenu-item">
-                                                        <a class="rvt-header-menu__submenu-link" href="#0">Sub One</a>
-                                                    </li>
-                                                    <li class="rvt-header-menu__submenu-item">
-                                                        <a class="rvt-header-menu__submenu-link" href="#0">Sub Three</a>
-                                                    </li>
-                                                    <li class="rvt-header-menu__submenu-item">
-                                                        <a class="rvt-header-menu__submenu-link" href="#0">Sub Three</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                    <li class="rvt-header-menu__item">
+                                        <a class="rvt-header-menu__link" href="#0">OSoMe Stat</a>
                                     </li>
                                 </ul>
 
@@ -83,10 +62,10 @@
 
                                 <div class="rvt-flex rvt-items-center rvt-m-left-md rvt-p-bottom-md rvt-p-bottom-none-lg-up">
                                     <div class="rvt-avatar rvt-avatar--xs">
-                                        <span class="rvt-avatar__text">UN</span>
+                                        <span class="rvt-avatar__text">{{ initials }}</span>
                                     </div>
-                                    <div class="rvt-ts-14 rvt-m-left-xs rvt-p-right-xs rvt-m-right-xs rvt-border-right">username</div>
-                                    <a class="rvt-ts-14" @click="logoutFunc" style="text-decoration: underline">Log out</a>
+                                    <div class="rvt-ts-14 rvt-m-left-xs rvt-p-right-xs rvt-m-right-xs rvt-border-right">{{ username }}</div>
+                                    <a class="rvt-ts-14" @click="logout" style="text-decoration: underline">Log out</a>
                                 </div>
                             </nav>
                         </div>
@@ -98,21 +77,58 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, computed } from 'vue';
 import {useRouter} from "vue-router";
-import axios from "axios";
-import {API_CALL} from "@/shared/content";
-
+import {logoutFunc} from "@/auth";
 const router = useRouter();
-async function logoutFunc() {
+import axios from 'axios';
+import { API_CALL } from '../shared/content';
+
+const username = ref<string | null>(null);
+const initials = computed(() => username.value ? username.value.charAt(0).toUpperCase() : 'UN'); // Fallback to 'UN'
+
+const fetchUsername = async () => {
     try {
-        const logout = {
-            email: "pkamburu2@gmail.com",
-            password: "pasan123@"
-        };
-        const res = await axios.post(`${API_CALL}/api/logout/`, logout);
+        const email = localStorage.getItem('email');
+
+        if (!email) {
+            throw new Error('Email is missing');
+        } else {
+            const response = await axios.get(`${API_CALL}/api/getuserbyemail/`, {
+                params: {
+                    email: email
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            username.value = response.data.name;
+            router.push('/');
+        }
+    } catch (error) {
+        console.error('Error fetching username:', error);
+    }
+};
+
+
+onMounted(() => {
+    fetchUsername();
+});
+
+const logout = async () => {
+    try {
+        const email = localStorage.getItem('email');
+        const password = localStorage.getItem('password');
+
+        if (!email || !password) {
+            throw new Error('Email or password is missing');
+        }
+
+        await logoutFunc(email, password);
         router.push('/login');
     } catch (error) {
         console.error('Error:', error);
     }
-}
+};
+
 </script>

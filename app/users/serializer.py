@@ -1,11 +1,8 @@
 """
 Purpose:
-    This is the main script that is used to render the frontend.
-    The script register the blueprints here which used to communicate with the frontend.
+    This is the main script serialized the password,
 Inputs:
     None
-Output:
-    *render the frontend
 Author: Pasan Kamburugamuwa
 """
 from rest_framework import serializers

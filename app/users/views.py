@@ -61,10 +61,26 @@ class getUser(APIView):
 
         return Response(serializer.data)
 
+
+class getUserByEmail(APIView):
+    def get(self, request):
+        email = request.query_params.get('email')
+
+        if not email:
+            return Response({"error": "Email parameter is required"}, status=400)
+
+        user = User.objects.filter(email=email).first()
+
+        if not user:
+            raise NotFound("User not found")
+
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
 class logout(APIView):
     def post(self, request):
         response = Response()
-        response.delete_cookie('jwt')
+        response.delete_cookie('user')
         response.data = {
             'message': 'successful'
         }
