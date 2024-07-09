@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
+import StatPage from "@/views/StatPage.vue";
 import LoginPage from "@/views/LoginPage.vue";
 import RegistrationPage from "@/views/RegistrationPage.vue";
 import { getCurrentUser } from '../auth';
@@ -7,6 +8,12 @@ import { getCurrentUser } from '../auth';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    name: 'stat',
+    component: StatPage,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/data',
     name: 'home',
     component: HomeView,
     meta: { requiresAuth: true }

@@ -67,7 +67,7 @@ const register = async () => {
                 password: password.value,
             };
             const response = await axios.post(API_CALL + '/api/register/', regData)
-            router.push('/');
+            router.push('/login');
         } catch (error) {
             console.error('Error:', error);
             errorMessage.value = 'Error in sign up. !'
